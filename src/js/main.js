@@ -14,7 +14,7 @@ $(document).ready(function () {
     Main.TrackScrolling();
 
     // Handle navigation.
-    Main.HandleMenuNavigation();
+    //Main.HandleMenuNavigation();
 });
 
 /// <summary>
@@ -25,10 +25,6 @@ Main.TrackWindowSize = function () {
 
     // Cache the header menu height.
     var headerMenuHeight = $('#header-menu').height();
-
-    // Cache the minimum header height.
-    var headerMinHeight = parseInt($('#header')
-        .css('height').replace('px', ''));
 
     // Any time the window is re-sized.
     $(window).resize($.debounce(250, function () {
@@ -45,19 +41,15 @@ Main.TrackWindowSize = function () {
     // element which triggers a CSS reflow.
     function updateWindowSize (window) {
 
+        console.log('c: ' + $('#about-me').position().top);
+
         // Set the current header height (window height sans menu).
         MainConstants.headerHeight = window.height() - headerMenuHeight;
 
-        // Don't shrink smaller than the vcard.
-        if (MainConstants.headerHeight < headerMinHeight ) {
-            MainConstants.headerHeight = headerMinHeight;
-        }
+        console.log('c: ' + MainConstants.headerHeight);
 
         // Round the header height to prevent any weird half-pixel operations.
         MainConstants.headerHeight = Math.ceil(MainConstants.headerHeight);
-
-        // Set the height to be the current window height.
-        $('#header').css('height', MainConstants.headerHeight);
     }
 };
 
@@ -110,10 +102,6 @@ Main.HandleMenuNavigation = function() {
     // Fetch the base document title.
     var documentTitleBase = document.title;
 
-    // Cache the header menu height.
-    var headerMenuHeight = parseInt($('#header-menu')
-        .css('height').replace('px', ''));
-
     // Array of the top position for each section.
     var menuSectionPositionTops = {};
     var menuSectionLinks = {};
@@ -135,7 +123,7 @@ Main.HandleMenuNavigation = function() {
     function scrollPageToActiveSection(animationTime) {
 
         // Scroll offset with a 1 pixel fudge factor.
-        var scrollOffset = -headerMenuHeight + 1;
+        var scrollOffset = -MainConstants.headerHeight + 1;
 
         if (window.mobileCheck()) {
 
@@ -143,8 +131,14 @@ Main.HandleMenuNavigation = function() {
             //$(window).scrollTo(activeSection, { offset: scrollOffset });
         } else {
 
+
+
             // Scroll to associated section.
             //$(window).scrollTo(activeSection, animationTime, { offset: scrollOffset, easing: 'swing' });
+
+            //$(window).animate({
+            //    scrollTop: scrollOffset
+            //}, animationTime);
         }
     }
 
@@ -173,7 +167,7 @@ Main.HandleMenuNavigation = function() {
     function setInitialPageScroll() {
 
         // Fetch the associated target link.
-        activeSection = $('#header-menu .menu-link.active').attr('href');
+        activeSection = $('#header-menu').find('.menu-link.active').attr('href');
 
         // Scroll to active section.
         scrollPageToActiveSection(0);
@@ -184,7 +178,7 @@ Main.HandleMenuNavigation = function() {
     function setTrackingForSectionScrolling() {
 
         // Fetch object array to menu links which contain section info.
-        var headerMenuLinks = $('#header-menu .menu-link');
+        var headerMenuLinks = $('#header-menu').find('.menu-link');
 
         headerMenuLinks.each(function () {
 
@@ -195,7 +189,7 @@ Main.HandleMenuNavigation = function() {
             var selector = menuLink.attr('href');
 
             // Fetch pixel top position of associated selector section.
-            var sectionPositionTop = $(selector).position().top + headerMenuHeight;
+            var sectionPositionTop = $(selector).position().top + MainConstants.headerHeight;
 
             sectionPositionTop = Math.ceil(sectionPositionTop);
 
@@ -266,7 +260,7 @@ Main.HandleMenuNavigation = function() {
         }
 
         // Remove active link class.
-        $('#header-menu .menu-link').removeClass('active');
+        $('#header-menu').find('.menu-link').removeClass('active');
 
         // Add to clicked element.
         sectionLink.addClass('active');
