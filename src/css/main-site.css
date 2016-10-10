@@ -169,7 +169,7 @@ h4 {
 /*---------------------------- Header/Menu CSS -----------------------------------*/
 /*--------------------------------------------------------------------------------*/
 
-#header {
+#home {
     position: relative;
     max-height: 1440px;
     overflow: hidden;
@@ -252,28 +252,28 @@ h4 {
 /*---------------------------- About Me Section CSS ------------------------------*/
 /*--------------------------------------------------------------------------------*/
 
-#about-me {
+#about {
     background-color: #8A7E65;
     color: #fff;
 }
 
-#about-me .content {
+#about .content {
     overflow: hidden;
 }
 
-#about-me .info {
+#about .info {
     float: left;
 
     width: 635px;
 }
 
-#about-me .profile-pic {
+#about .profile-pic {
     height: 300px;
     width: 300px;
     float: right;
 }
 
-#about-me .profile-pic img {
+#about .profile-pic img {
     display: block;
     height: 100%;
     width: 100%;
@@ -285,7 +285,7 @@ h4 {
 /*------------------------- Technical Skills Section CSS --- Root Color: #DBD6BE -*/
 /*--------------------------------------------------------------------------------*/
 
-#technical-skills {
+#skills {
     background-color: #9b6866;
     color: #fff;
 }
@@ -303,16 +303,16 @@ h4 {
 /*------------------ Professional Experience Section CSS --- Root Color: #3e565b -*/
 /*--------------------------------------------------------------------------------*/
 
-#professional-experience {
+#experience {
     background-color: #556c71;
     color: #fff;
 }
 
-#professional-experience .content {
+#experience .content {
     position: relative;
 }
 
-#professional-experience .content:after {
+#experience .content:after {
     background-color: #27393d;
     position: absolute;
     height: 100%;
@@ -322,16 +322,16 @@ h4 {
     top: 0;
 }
 
-#professional-experience .item {
+#experience .item {
     margin-bottom: 50px;
     overflow: hidden;
 }
 
-#professional-experience .item:last-child {
+#experience .item:last-child {
     margin-bottom: 0;
 }
 
-#professional-experience .item .work-year {
+#experience .item .work-year {
     background-color: #3e565b;
     text-align: center;
     line-height: 1.5em;
@@ -343,11 +343,11 @@ h4 {
     .border-radius(75px);
 }
 
-#professional-experience .item .work-year .inner {
+#experience .item .work-year .inner {
     margin-top: 50px;
 }
 
-#professional-experience .item .work-info {
+#experience .item .work-info {
     border-bottom: 4px solid #27393d;
     background-color: #3e565b;
     position: relative;
@@ -355,7 +355,7 @@ h4 {
     margin-left: 225px;
 }
 
-#professional-experience .item .work-info:before {
+#experience .item .work-info:before {
     border-bottom: 10px solid transparent;
     border-top: 10px solid transparent;
     border-right: 10px solid #3e565b;
@@ -454,23 +454,23 @@ h4 {
 /*------------------------ Contact Details Section CSS ---------------------------*/
 /*--------------------------------------------------------------------------------*/
 
-#contact-details {
+#contact {
     background-color: #474D5D;
     color: #fff;
 }
 
-#contact-details h4 {
+#contact h4 {
     text-transform: uppercase;
     padding-bottom: 25px;
 }
 
-#contact-details .contact-details {
+#contact .contact-details {
     width: 300px;
     float: left;
 }
 
-#contact-details .contact-details p,
-#contact-details .contact-details a {
+#contact .contact-details p,
+#contact .contact-details a {
     text-decoration: none;
     margin-bottom: 15px;
     font-weight: normal;
@@ -479,20 +479,20 @@ h4 {
     margin-top: 0;
 }
 
-#contact-details .contact-details .fa {
+#contact .contact-details .fa {
     display: inline-block;
     margin-right: 5px;
     height: 15px;
     width: 15px;
 }
 
-#contact-details .contact-form {
+#contact .contact-form {
     margin-left: 325px;
     overflow: hidden;
     width: 725px;
 }
 
-#contact-details .contact-form .form-input {
+#contact .contact-form .form-input {
     background-color: #585F73;
     display: inline-block;
     padding: 15px 30px;
@@ -503,23 +503,23 @@ h4 {
     .box-sizing(border-box);
 }
 
-#contact-details .contact-form .form-email,
-#contact-details .contact-form .form-name {
+#contact .contact-form .form-email,
+#contact .contact-form .form-name {
     width: 350px;
 }
 
-#contact-details .contact-form .form-name {
+#contact .contact-form .form-name {
     margin-right: 25px;
 }
 
 
-#contact-details .contact-form .form-comments {
+#contact .contact-form .form-comments {
     min-height: 100px;
     margin-top: 25px;
     width: 100%;
 }
 
-#contact-details .contact-form .form-submit {
+#contact .contact-form .form-submit {
     background-color: #2B2F3B;
     margin-top: 25px;
     float: right;

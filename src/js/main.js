@@ -18,7 +18,7 @@ $(document).ready(function () {
 
 Main.CacheDocumentElements = function() {
 
-    _.header = $('#header');
+    _.header = $('#home');
     _.headerMenu = $('#header-menu');
 
     _.sections = $('section');
