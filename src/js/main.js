@@ -1,11 +1,13 @@
 var Main = {};
-var MainConstants = {};
+var _ = {};
 
 /// <summary>
 /// When document is loaded, run all main
 /// jQuery powered functionality.
 /// </summary>
 $(document).ready(function () {
+
+    Main.CacheDocumentElements();
 
     // Window size tracking.
     Main.TrackWindowSize();
@@ -17,6 +19,51 @@ $(document).ready(function () {
     //Main.HandleMenuNavigation();
 });
 
+Main.CacheDocumentElements = function() {
+
+    _.header = $('#header');
+    _.headerMenu = $('#header-menu');
+
+    _.sections = $('section');
+    _.sectionElements = getSectionElements(_.header, _.sections);
+    _.sectionOffsets = new Array(_.sections.length + 1);
+
+    _.menuLinks = $('.menu-link');
+    _.menuLinkElements = getMenuLinkElements(_.menuLinks);
+
+    /// <summary>
+    /// Get reference object to each section.
+    /// </summary>
+    function getSectionElements(header, sections) {
+
+        var sectionElements = new Array(sections.length);
+
+        sectionElements[0] = header;
+
+        $.each(sections, function(index) {
+
+            sectionElements[index + 1] = $(this);
+        });
+
+        return sectionElements;
+    }
+
+    /// <summary>
+    /// Get reference object to each menu link.
+    /// </summary>
+    function getMenuLinkElements(menuLinks) {
+
+        var menuLinkElements = new Array(menuLinks.length);
+
+        $.each(menuLinks, function(index) {
+
+            menuLinkElements[index] = $(this);
+        });
+
+        return menuLinkElements;
+    }
+};
+
 /// <summary>
 /// De-bounced tracking of window resize events.  When
 /// the size changes, update the UI accordingly.
@@ -24,32 +71,51 @@ $(document).ready(function () {
 Main.TrackWindowSize = function () {
 
     // Cache the header menu height.
-    var headerMenuHeight = $('#header-menu').height();
+    var headerMenuHeight = _.headerMenu.height();
 
     // Any time the window is re-sized.
     $(window).resize($.debounce(250, function () {
 
         // Update and provide the already
         // looked-up window object.
-        updateWindowSize($(this));
+        updateWindowSize();
     }));
 
     // Update once on load.
-    updateWindowSize($(window));
+    updateWindowSize();
 
-    /// Update the size of the header section
-    // element which triggers a CSS reflow.
-    function updateWindowSize (window) {
+    // Update constants when window size changes.
+    function updateWindowSize() {
 
-        console.log('c: ' + $('#about-me').position().top);
+        // Header height.
+        updateHeaderHeight();
+
+        // Section offsets.
+        updateSectionOffset()
+    }
+
+    // Update header of the height.
+    function updateHeaderHeight() {
 
         // Set the current header height (window height sans menu).
-        MainConstants.headerHeight = window.height() - headerMenuHeight;
+        _.headerHeight = _.header.height() - headerMenuHeight;
+    }
 
-        console.log('c: ' + MainConstants.headerHeight);
+    // Update section offsets from top of window.
+    function updateSectionOffset() {
 
-        // Round the header height to prevent any weird half-pixel operations.
-        MainConstants.headerHeight = Math.ceil(MainConstants.headerHeight);
+        $.each(_.sectionElements, function(index) {
+
+            if (index == 0) {
+                _.sectionOffsets[index] = 0;
+            } else {
+
+                var lastSectionOffset = _.sectionOffsets[index - 1];
+                var nextSectionOffset = _.sectionElements[index - 1].height();
+
+                _.sectionOffsets[index] = Math.floor(lastSectionOffset + nextSectionOffset);
+            }
+        });
     }
 };
 
@@ -59,35 +125,67 @@ Main.TrackWindowSize = function () {
 /// </summary>
 Main.TrackScrolling = function() {
 
-    // Cache the header menu object.
-    var headerMenu = $('#header-menu');
-
     // Track scroll events.
     $(window).scroll(function () {
 
         // Update menu positioning.
-        positionHeaderMenu($(this));
+        handleWindowScroll($(this));
     });
 
-    // Position once on load.
-    positionHeaderMenu($(window));
+    // Run once on load.
+    handleWindowScroll($(window));
 
     // Update header positioning based on
     // where the user is on the page.
-    function positionHeaderMenu (window) {
+    function handleWindowScroll (window) {
+
+        var scrollTop = window.scrollTop();
+
+        // Set menu position.
+        updateHeaderMenuPosition(scrollTop);
+
+        // Set active section.
+        updateActiveSection(scrollTop);
+    }
+
+    function updateHeaderMenuPosition(scrollTop) {
 
         // If we have scroll passed the header.
-        if (window.scrollTop() > MainConstants.headerHeight) {
+        if (scrollTop > _.headerHeight) {
 
             // Set the menu to be fixed to top.
-            if (headerMenu.hasClass('fixed') === false) {
-                headerMenu.addClass('fixed');
+            if (_.headerMenu.hasClass('fixed') === false) {
+                _.headerMenu.addClass('fixed');
             }
+
         } else {
 
             // Otherwise use default style.
-            if (headerMenu.hasClass('fixed')) {
-                headerMenu.removeClass('fixed');
+            if (_.headerMenu.hasClass('fixed')) {
+                _.headerMenu.removeClass('fixed');
+            }
+        }
+    }
+
+    function updateActiveSection(scrollTop) {
+        for (var index = 0; index < _.sectionOffsets.length; index++) {
+
+            if (isActiveSection(scrollTop)) {
+
+                if (!_.menuLinkElements[index].hasClass('active')) {
+                    _.menuLinkElements[index].addClass('active');
+                }
+            } else if (
+                _.menuLinkElements[index].hasClass('active')) {
+                _.menuLinkElements[index].removeClass('active');
+            }
+        }
+
+        function isActiveSection(scrollTop) {
+            if (index + 1 < _.sectionOffsets.length) {
+                return scrollTop >= _.sectionOffsets[index] && scrollTop < _.sectionOffsets[index + 1];
+            } else {
+                return scrollTop >= _.sectionOffsets[index];
             }
         }
     }
@@ -109,38 +207,8 @@ Main.HandleMenuNavigation = function() {
     // Current active section.
     var activeSection = '';
 
-    // Set initial position.
-    setInitialPageScroll();
-
     // Track scrolling to update menu.
     setTrackingForSectionScrolling();
-
-    // Make menu clicking function.
-    setMenuClickingFunctionality();
-
-    // Scroll page to a target section, on mobile
-    // devices do not animate it.
-    function scrollPageToActiveSection(animationTime) {
-
-        // Scroll offset with a 1 pixel fudge factor.
-        var scrollOffset = -MainConstants.headerHeight + 1;
-
-        if (window.mobileCheck()) {
-
-            // Scroll to associated section.
-            //$(window).scrollTo(activeSection, { offset: scrollOffset });
-        } else {
-
-
-
-            // Scroll to associated section.
-            //$(window).scrollTo(activeSection, animationTime, { offset: scrollOffset, easing: 'swing' });
-
-            //$(window).animate({
-            //    scrollTop: scrollOffset
-            //}, animationTime);
-        }
-    }
 
     // Replace the current state which practically speaking will
     // update the navigation bar so people can subsequen
@@ -159,18 +227,7 @@ Main.HandleMenuNavigation = function() {
         }
 
         // Update the page history state, provide lowercased title for URL.
-        window.history.replaceState(null, null, newStateTitle.toLowerCase());
-    }
-
-    // Set the initial page scrolling
-    // based on the active menu link.
-    function setInitialPageScroll() {
-
-        // Fetch the associated target link.
-        activeSection = $('#header-menu').find('.menu-link.active').attr('href');
-
-        // Scroll to active section.
-        scrollPageToActiveSection(0);
+        window.history.replaceState(null, '', newStateTitle.toLowerCase());
     }
 
     // Scrolling around the page will also update the
@@ -185,7 +242,7 @@ Main.HandleMenuNavigation = function() {
             // Fetch object.
             var menuLink = $(this);
 
-            // Fetch id seleector.
+            // Fetch id selector.
             var selector = menuLink.attr('href');
 
             // Fetch pixel top position of associated selector section.
@@ -225,39 +282,17 @@ Main.HandleMenuNavigation = function() {
             if (highestSectionIndexSeen != activeSection) {
 
                 // Enable it, but do not scroll to it.
-                enableActiveSection(menuSectionLinks[highestSectionIndexSeen], false);
+                enableActiveSection(menuSectionLinks[highestSectionIndexSeen]);
             }
         }));
     }
 
-    // When user clicks on a link make sure they
-    // get taken to proper section and also update
-    // the browser url.
-    function setMenuClickingFunctionality() {
-
-        // Any time a menu link is clicked.
-        $('#header-menu').on('click', '.menu-link', function () {
-
-            // Enable and scroll to new active section.
-            enableActiveSection($(this), true);
-
-            // Stop default click.
-            return false;
-        });
-    }
-
     // Given a section link object, enable and
     // optionally scroll to that section.
-    function enableActiveSection(sectionLink, scrollToSection) {
+    function enableActiveSection(sectionLink) {
 
         // Set active section.
         activeSection = sectionLink.attr('href');
-
-        if (scrollToSection) {
-
-            // Scroll to active section.
-            scrollPageToActiveSection(500);
-        }
 
         // Remove active link class.
         $('#header-menu').find('.menu-link').removeClass('active');

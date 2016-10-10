@@ -58,7 +58,7 @@ h4 {
 }
 
 .container.padded .section-heading {
-    padding: 75px 25px 50px;
+    padding: 100px 25px 50px;
 }
 
 .container.padded .content {
@@ -462,10 +462,6 @@ h4 {
 #contact-details h4 {
     text-transform: uppercase;
     padding-bottom: 25px;
-}
-
-#contact-details .content {
-    padding-top: 75px;
 }
 
 #contact-details .contact-details {
