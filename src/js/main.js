@@ -14,9 +14,6 @@ $(document).ready(function () {
 
     // Window scroll tracking.
     Main.TrackScrolling();
-
-    // Handle navigation.
-    //Main.HandleMenuNavigation();
 });
 
 Main.CacheDocumentElements = function() {
@@ -170,10 +167,13 @@ Main.TrackScrolling = function() {
     function updateActiveSection(scrollTop) {
         for (var index = 0; index < _.sectionOffsets.length; index++) {
 
-            if (isActiveSection(scrollTop)) {
+            if (isActiveSection(scrollTop, _.sectionOffsets)) {
 
                 if (!_.menuLinkElements[index].hasClass('active')) {
                     _.menuLinkElements[index].addClass('active');
+
+                    // Push new link state.
+                    window.history.replaceState(null, document.title, _.menuLinkElements[index].attr('href'));
                 }
             } else if (
                 _.menuLinkElements[index].hasClass('active')) {
@@ -181,126 +181,15 @@ Main.TrackScrolling = function() {
             }
         }
 
-        function isActiveSection(scrollTop) {
-            if (index + 1 < _.sectionOffsets.length) {
-                return scrollTop >= _.sectionOffsets[index] && scrollTop < _.sectionOffsets[index + 1];
+        /// <summary>
+        /// If scrolled between two sections or at the last section, it's active.
+        /// </summary>
+        function isActiveSection(scrollTop, sectionOffsets) {
+            if (index + 1 < sectionOffsets.length) {
+                return scrollTop >= sectionOffsets[index] && scrollTop < sectionOffsets[index + 1];
             } else {
-                return scrollTop >= _.sectionOffsets[index];
+                return scrollTop >= sectionOffsets[index];
             }
         }
-    }
-};
-
-/// <summary>
-/// Hook into menu click events and create
-/// custom scroll behavior with url hash updating.
-/// </summary>
-Main.HandleMenuNavigation = function() {
-
-    // Fetch the base document title.
-    var documentTitleBase = document.title;
-
-    // Array of the top position for each section.
-    var menuSectionPositionTops = {};
-    var menuSectionLinks = {};
-
-    // Current active section.
-    var activeSection = '';
-
-    // Track scrolling to update menu.
-    setTrackingForSectionScrolling();
-
-    // Replace the current state which practically speaking will
-    // update the navigation bar so people can subsequen
-    function replaceState(newStateTitle) {
-
-        // Reset the original title.
-        document.title = documentTitleBase;
-
-        // Empty string is 'home' state.
-        if (newStateTitle === '') {
-            newStateTitle = '/';
-        } else {
-
-            // Add new state to title if not home state.
-            document.title += ' - ' + newStateTitle;
-        }
-
-        // Update the page history state, provide lowercased title for URL.
-        window.history.replaceState(null, '', newStateTitle.toLowerCase());
-    }
-
-    // Scrolling around the page will also update the
-    // menu and active section state.
-    function setTrackingForSectionScrolling() {
-
-        // Fetch object array to menu links which contain section info.
-        var headerMenuLinks = $('#header-menu').find('.menu-link');
-
-        headerMenuLinks.each(function () {
-
-            // Fetch object.
-            var menuLink = $(this);
-
-            // Fetch id selector.
-            var selector = menuLink.attr('href');
-
-            // Fetch pixel top position of associated selector section.
-            var sectionPositionTop = $(selector).position().top + MainConstants.headerHeight;
-
-            sectionPositionTop = Math.ceil(sectionPositionTop);
-
-            if (sectionPositionTop < 0) {
-                sectionPositionTop = 0;
-            }
-
-            // Save link and position top.
-            menuSectionLinks[selector] = menuLink;
-            menuSectionPositionTops[selector] = sectionPositionTop;
-        });
-
-        // De-bounced window scrolling to update section.
-        $(window).scroll($.debounce(250, function () {
-
-            var highestSectionTopSeen = 0;
-            var highestSectionIndexSeen = headerMenuLinks.first().attr('href');
-
-            for (var index in menuSectionPositionTops) {
-
-                // If we are scrolled past the lowest page section we have seen
-                // so far (add a +1 as a rounding fudge factor).
-                if (menuSectionPositionTops[index] < ($(this).scrollTop() + 1) &&
-                    menuSectionPositionTops[index] > highestSectionTopSeen) {
-
-                    // Set the highest top and index variables.
-                    highestSectionTopSeen = menuSectionPositionTops[index];
-                    highestSectionIndexSeen = index;
-                }
-            }
-
-            // If we are in a different section.
-            if (highestSectionIndexSeen != activeSection) {
-
-                // Enable it, but do not scroll to it.
-                enableActiveSection(menuSectionLinks[highestSectionIndexSeen]);
-            }
-        }));
-    }
-
-    // Given a section link object, enable and
-    // optionally scroll to that section.
-    function enableActiveSection(sectionLink) {
-
-        // Set active section.
-        activeSection = sectionLink.attr('href');
-
-        // Remove active link class.
-        $('#header-menu').find('.menu-link').removeClass('active');
-
-        // Add to clicked element.
-        sectionLink.addClass('active');
-
-        // Update page state.
-        replaceState(sectionLink.attr('title'));
     }
 };
