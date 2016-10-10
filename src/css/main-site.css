@@ -1,13 +1,10 @@
-﻿@import "Mixins";
-@import "Variables";
-
-/*--------------------------------------------------------------------------------*/
+﻿/*--------------------------------------------------------------------------------*/
 /*-------------------------------- General CSS -----------------------------------*/
 /*--------------------------------------------------------------------------------*/
 
 body {
     font-family: 'Raleway', sans-serif;
-    min-width: @site_width;
+    min-width: 1100px;
 }
 
 ul {
@@ -50,9 +47,9 @@ h4 {
 }
 
 .container {
-    width: @site_width;
     overflow: hidden;
     margin: 0 auto;
+    width: 1100px;
 }
 
 .container.padded .section-heading {
@@ -65,7 +62,7 @@ h4 {
 }
 
 #main {
-    margin-top: @header_menu_height;
+    margin-top: 62px;
 }
 
 /*--------------------------------------------------------------------------------*/
@@ -102,7 +99,7 @@ h4 {
     margin: auto;
     color: #fff;
     bottom: 0;
-    right: 0;   
+    right: 0;
     left: 0;
     top: 0;
 
@@ -130,14 +127,14 @@ h4 {
 /*--------------------------------------------------------------------------------*/
 
 #header-banner {
-    background-color: @header_menu_background_color;
+    background-color: #333;
     height: 100%;
 
     .diagonal-gradient(#555, #444);
 }
 
 #header-banner .banner {
-    background: url("../images/background_2880.jpg") center no-repeat;
+    background: url("../img/covers/background_2880.jpg") center no-repeat;
     height: 100%;
     width: 100%;
 }
@@ -148,19 +145,19 @@ h4 {
 
 @media screen and (max-width: 1280px) and (min-width:  640px) {
     #header-banner .banner {
-        background-image: url("../images/background_1280.jpg");
+        background-image: url("../img/covers/background_1280.jpg");
     }
 }
 
 @media screen and (max-width: 1920px) and (min-width: 1280px) {
     #header-banner .banner {
-        background-image: url("../images/background_1920.jpg");
+        background-image: url("../img/covers/background_1920.jpg");
     }
 }
 
 @media screen and (max-width: 2560px) and (min-width: 1920px) {
     #header-banner .banner {
-        background-image: url("../images/background_2560.jpg");
+        background-image: url("../img/covers/background_2560.jpg");
     }
 }
 
@@ -174,10 +171,10 @@ h4 {
 }
 
 #header:after {
-    background-color: @header_menu_background_color;
-    height: @header_menu_height;
+    background-color: #333;
     position: absolute;
     bottom: -62px;
+    height: 62px;
     content: "";
     width: 100%;
     z-index: 0;
@@ -187,13 +184,13 @@ h4 {
 }
 
 #header-menu {
-    background-color: @header_menu_background_color;
-    bottom: -@header_menu_height;
-    height: @header_menu_height;
+    background-color: #333;
     text-transform: uppercase;
     position: absolute;
     font-weight: 300;
     font-size: 14px;
+    bottom: -62px;
+    height: 62px;
     opacity: .9;
     z-index: 1;
     right: 0;
@@ -214,8 +211,8 @@ h4 {
 }
 
 #header-menu .menu-item {
-    line-height: @header_menu_height;
     display: inline-block;
+    line-height: 62px;
     cursor: pointer;
     height: 100%;
 }
@@ -301,7 +298,7 @@ h4 {
 #technical-skills {
     background-color: #9b6866;
     color: #fff;
-}  
+}
 
 /*--------------------------------------------------------------------------------*/
 /*---------------------------- Education Section CSS ------- Root Color: #738485 -*/
@@ -417,7 +414,7 @@ h4 {
 }
 
 #contact-map .map {
-    background: url('/Content/Images/map.png');
+    background: url('../img/map.jpg');
     position: relative;
     overflow: hidden;
     display: block;
@@ -483,7 +480,7 @@ h4 {
 }
 
 #contact-details .contact-details {
-    width: 300px; 
+    width: 300px;
     float: left;
 }
 
@@ -565,7 +562,7 @@ h4 {
     margin: 0 12px;
     height: 48px;
     width: 48px;
-    
+
     .border-radius(24px);
 }
 

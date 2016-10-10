@@ -1,5 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="">
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -14,12 +15,14 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
 
-        <link rel="stylesheet" href="css/main-normalize.css" />
         <link rel="stylesheet" href="css/main-font-raleway.css" />
+        <link rel="stylesheet" href="css/main-normalize.css" />
         <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/main-site.css" />
 
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
+
     <body>
         <header id="header">
             <div id="header-banner">
@@ -31,13 +34,27 @@
             </div>
             <div id="header-menu">
                 <ul class="menu container" data-test="@ViewBag.Title">
-                    <li class="menu-item"><a class="menu-link @(ViewBag.PageName.Equals("Home")       ? "active" : "")" href="#header-banner"           title="">Home</a></li>
-                    <li class="menu-item"><a class="menu-link @(ViewBag.PageName.Equals("About")      ? "active" : "")" href="#about-me"                title="About">About</a></li>
-                    <li class="menu-item"><a class="menu-link @(ViewBag.PageName.Equals("Experience") ? "active" : "")" href="#professional-experience" title="Experience">Experience</a></li>
-                    <li class="menu-item"><a class="menu-link @(ViewBag.PageName.Equals("Skills")     ? "active" : "")" href="#technical-skills"        title="Skills">Skills</a></li>
-                    <li class="menu-item"><a class="menu-link @(ViewBag.PageName.Equals("Portfolio")  ? "active" : "")" href="#portfolio"               title="Portfolio">Portfolio</a></li>
-                    <li class="menu-item"><a class="menu-link @(ViewBag.PageName.Equals("Education")  ? "active" : "")" href="#education"               title="Education">Education</a></li>
-                    <li class="menu-item"><a class="menu-link @(ViewBag.PageName.Equals("Contact")    ? "active" : "")" href="#contact-map"             title="Contact">Contact</a></li>
+                    <li class="menu-item">
+                        <a class="menu-link" href="#header-banner" title="">Home</a>
+                    </li>
+                    <li class="menu-item">
+                        <a class="menu-link" href="#about-me" title="About">About</a>
+                    </li>
+                    <li class="menu-item">
+                        <a class="menu-link" href="#professional-experience" title="Experience">Experience</a>
+                    </li>
+                    <li class="menu-item">
+                        <a class="menu-link" href="#technical-skills" title="Skills">Skills</a>
+                    </li>
+                    <li class="menu-item">
+                        <a class="menu-link" href="#portfolio" title="Portfolio">Portfolio</a>
+                    </li>
+                    <li class="menu-item">
+                        <a class="menu-link" href="#education" title="Education">Education</a>
+                    </li>
+                    <li class="menu-item">
+                        <a class="menu-link" href="#contact-map" title="Contact">Contact</a>
+                    </li>
                 </ul>
             </div>
         </header>
