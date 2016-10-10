@@ -2,10 +2,14 @@
 <html class="no-js" lang="">
     <head>
         <meta charset="utf-8">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
-        <meta name="description" content="">
+        <meta name="description" content="Web entrepreneur/mobile application developer with both front and back end experience.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Miguel Gaeta">
+        <meta name="robots" content="index, follow">
+
+        <title>Miguel Gaeta - Web Developer | Mobile UI Engineer | Entrepreneur</title>
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
@@ -15,26 +19,197 @@
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+        <header id="header">
+            <div id="header-banner">
+                <div class="banner"></div>
+            </div>
+            <div id="header-vcard">
+                <h1>Miguel Gaeta</h1>
+                <h2>Web Developer &#8226; Mobile UI Engineer &#8226; Entrepreneur</h2>
+            </div>
+            <div id="header-menu">
+                <ul class="menu container" data-test="@ViewBag.Title">
+                    <li class="menu-item"><a class="menu-link @(ViewBag.PageName.Equals("Home")       ? "active" : "")" href="#header-banner"           title="">Home</a></li>
+                    <li class="menu-item"><a class="menu-link @(ViewBag.PageName.Equals("About")      ? "active" : "")" href="#about-me"                title="About">About</a></li>
+                    <li class="menu-item"><a class="menu-link @(ViewBag.PageName.Equals("Experience") ? "active" : "")" href="#professional-experience" title="Experience">Experience</a></li>
+                    <li class="menu-item"><a class="menu-link @(ViewBag.PageName.Equals("Skills")     ? "active" : "")" href="#technical-skills"        title="Skills">Skills</a></li>
+                    <li class="menu-item"><a class="menu-link @(ViewBag.PageName.Equals("Portfolio")  ? "active" : "")" href="#portfolio"               title="Portfolio">Portfolio</a></li>
+                    <li class="menu-item"><a class="menu-link @(ViewBag.PageName.Equals("Education")  ? "active" : "")" href="#education"               title="Education">Education</a></li>
+                    <li class="menu-item"><a class="menu-link @(ViewBag.PageName.Equals("Contact")    ? "active" : "")" href="#contact-map"             title="Contact">Contact</a></li>
+                </ul>
+            </div>
+        </header>
 
-        <!-- Add your site or application content here -->
-        <p>Hello world! This is HTML5 Boilerplate.</p>
+        <div id="main">
+            <section id="about-me">
+                <div class="container padded">
+                    <div class="section-heading">
+                        <h2>About me</h2>
+                        <p>I am a full stack web developer and entrepreneur living in the Bay Area - I also do Android and iOS apps!</p>
+                    </div>
+                    <div class="content">
+                        <div class="info">
+                            <h3>Miguel Gaeta</h3>
+                            <h4>Web Developer &#8226; Mobile UI Engineer &#8226; Entrepreneur</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.  cillum dolore eu fugiat nulla pariatur. olore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                            <p>I am currently working as lead developer for my startup company <a href="http://www.gamersportal.com" target="_blank">gamersportal.com</a> and do front-end (+mobile) development on the side.  I love computers, technology and have a passion for anything related to web and video game development.</p>
+                            <a class="button" href="#">Download Printable Resume</a>
+                        </div>
+                        <div class="profile-pic">
+                            <img alt="" src="/Content/Images/miguel_gaeta_1.jpg">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="professional-experience">
+                <div class="container padded">
+                    <div class="section-heading">
+                        <h2>Professional Experience</h2>
+                        <p>My previous & current associations.</p>
+                    </div>
+                    <ul class="content">
+                        <li class="item">
+                            <div class="work-year">
+                                <div class="inner">
+                                    Mar, 2013 <br /> Present
+                                </div>
+                            </div>
+                            <div class="work-info">
+                                <h3>Gamers Portal</h3>
+                                <h4>Senior UX Designer</h4>
+                                <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quom placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui faorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius.</p>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="work-year">
+                                <div class="inner">
+                                    Mar, 2013 <br /> Present
+                                </div>
+                            </div>
+                            <div class="work-info">
+                                <h3>Gamers Portal</h3>
+                                <h4>Senior UX Designer</h4>
+                                <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quom placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui faorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius.</p>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="work-year">
+                                <div class="inner">
+                                    Mar, 2013 <br /> Present
+                                </div>
+                            </div>
+                            <div class="work-info">
+                                <h3>Gamers Portal</h3>
+                                <h4>Senior UX Designer</h4>
+                                <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quom placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui faorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="technical-skills">
+                <div class="container padded">
+                    <div class="section-heading">
+                        <h2>Technical Skills</h2>
+                        <p>I can say I'm quite good at.</p>
+                    </div>
+                    <div class="content">
+                        content
+                    </div>
+                </div>
+            </section>
+
+            <section id="portfolio">
+                <div class="container padded">
+                    <div class="section-heading">
+                        <h2>Portfolio</h2>
+                        <p>Showcase of my latest projects.</p>
+                    </div>
+                    <ul class="content">
+                        <li class="item"></li>
+                        <li class="item"></li>
+                        <li class="item"></li>
+                        <li class="item"></li>
+                        <li class="item"></li>
+                        <li class="item"></li>
+                        <li class="item"></li>
+                        <li class="item"></li>
+                        <li class="item"></li>
+                        <li class="item"></li>
+                        <li class="item"></li>
+                        <li class="item"></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="education">
+                <div class="container padded">
+                    <div class="section-heading">
+                        <h2>Education & Diplomas</h2>
+                        <p>What I have done in my academic career.</p>
+                    </div>
+                    <div class="content">
+                        content
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact-map">
+                <div class="container padded">
+                    <div class="section-heading">
+                        <h2>Get In Touch</h2>
+                        <p>Please feel free if you would like to have a chat.</p>
+                    </div>
+                </div>
+                <div class="map">
+                    <div class="overlay"></div>
+                    <img src="/Content/Images/map.jpg" alt="" />
+                </div>
+            </section>
+
+            <section id="contact-details">
+                <div class="container padded">
+                    <div class="content">
+                        <div class="contact-details">
+                            <h4>Contact Details</h4>
+                            <p> <i class="fa fa-map-marker fa-lg"></i> 785 Golden Gate Ave. #403</p>
+                            <p> <i class="fa fa-mobile fa-lg"></i> +408-316-1543</p>
+                            <p> <i class="fa fa-envelope-o "></i> <a href="mailto:miguel@miguelgaeta.com">miguel@miguelgaeta.com</a></p>
+                            <p> <i class="fa fa-link "></i> <a href="www.miguelgaeta.com">www.miguelgaeta.com</a></p>
+                        </div>
+
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "contact-form" }))
+                        {
+                        <h4>Shoot a message!</h4>
+
+                        <input type="text" placeholder="Your name..." class="form-input form-name" name="name" /><input type="email" placeholder="Your email..." class="form-input form-email" name="email" />
+
+                        <textarea placeholder="Your message..." class="form-input form-comments" name="comments"></textarea>
+
+                        <input type="submit" value="Send message" class="form-submit button" name="send" />
+                        }
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer id="footer">
+            <div class="container">
+                <ul class="social">
+                    <li class="social-element"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li class="social-element"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li class="social-element"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li class="social-element"><a href="#"><i class="fa fa-github"></i></a></li>
+                    <li class="social-element"><a href="#"><i class="fa fa-google"></i></a></li>
+                </ul>
+            </div>
+        </footer>
 
         <script src="https://code.jquery.com/jquery-{{JQUERY_VERSION}}.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-{{JQUERY_VERSION}}.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='https://www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
-        </script>
     </body>
 </html>
