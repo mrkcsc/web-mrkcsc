@@ -1,0 +1,617 @@
+﻿@import "Mixins";
+@import "Variables";
+
+/*--------------------------------------------------------------------------------*/
+/*-------------------------------- General CSS -----------------------------------*/
+/*--------------------------------------------------------------------------------*/
+
+body {
+    font-family: 'Raleway', sans-serif;
+    min-width: @site_width;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+p {
+    margin: 12px 0 24px;
+    line-height: 24px;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+a {
+    font-weight: 600;
+    color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    padding: 0;
+    margin: 0;
+}
+
+h3 {
+    padding-bottom: 15px;
+    line-height: 24px;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+h4 {
+    padding-bottom: 15px;
+    line-height: 18px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.container {
+    width: @site_width;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.container.padded .section-heading {
+    padding: 75px 25px 50px;
+}
+
+.container.padded .content {
+    margin: 0 25px 100px;
+    overflow: hidden;
+}
+
+#main {
+    margin-top: @header_menu_height;
+}
+
+/*--------------------------------------------------------------------------------*/
+/*----------------------------- Button and Input CSS -----------------------------*/
+/*--------------------------------------------------------------------------------*/
+
+.button {
+    background-color: #584F3D;
+    text-decoration: none;
+    display: inline-block;
+    padding: 16px 30px;
+    font-weight: 700;
+    min-width: 200px;
+    font-size: 15px;
+    border: none;
+    color: #fff;
+}
+
+.button:hover {
+    color: #eee;
+}
+
+/*--------------------------------------------------------------------------------*/
+/*---------------------------- Header V-Card CSS ---------------------------------*/
+/*--------------------------------------------------------------------------------*/
+
+#header-vcard {
+    background-color: rgba(0, 0, 0, .65);
+    border: 1px solid #d5d5d5;
+    position: absolute;
+    text-align: center;
+    width: 1000px;
+    height: 200px;
+    margin: auto;
+    color: #fff;
+    bottom: 0;
+    right: 0;   
+    left: 0;
+    top: 0;
+
+    .border-radius(3px);
+    .box-shadow(0 0px 2px 0 rgba(0, 0, 0, 0.5));
+}
+
+#header-vcard h1 {
+    text-transform: uppercase;
+    margin: 30px 0 25px;
+    line-height: 80px;
+    font-weight: 300;
+    font-size: 80px;
+}
+
+#header-vcard h2 {
+    line-height: 36px;
+    font-weight: 300;
+    font-size: 30px;
+    margin: 0;
+}
+
+/*--------------------------------------------------------------------------------*/
+/*---------------------------- Header Banner CSS ---------------------------------*/
+/*--------------------------------------------------------------------------------*/
+
+#header-banner {
+    background-color: @header_menu_background_color;
+    height: 100%;
+
+    .diagonal-gradient(#555, #444);
+}
+
+#header-banner .banner {
+    background: url("../images/background_2880.jpg") center no-repeat;
+    height: 100%;
+    width: 100%;
+}
+
+@media screen and (max-width : 320px) {
+
+}
+
+@media screen and (max-width: 1280px) and (min-width:  640px) {
+    #header-banner .banner {
+        background-image: url("../images/background_1280.jpg");
+    }
+}
+
+@media screen and (max-width: 1920px) and (min-width: 1280px) {
+    #header-banner .banner {
+        background-image: url("../images/background_1920.jpg");
+    }
+}
+
+@media screen and (max-width: 2560px) and (min-width: 1920px) {
+    #header-banner .banner {
+        background-image: url("../images/background_2560.jpg");
+    }
+}
+
+/*--------------------------------------------------------------------------------*/
+/*---------------------------- Header/Menu CSS -----------------------------------*/
+/*--------------------------------------------------------------------------------*/
+
+#header {
+    position: relative;
+    height: 300px;
+}
+
+#header:after {
+    background-color: @header_menu_background_color;
+    height: @header_menu_height;
+    position: absolute;
+    bottom: -62px;
+    content: "";
+    width: 100%;
+    z-index: 0;
+    left: 0;
+
+    .box-shadow(0 -2px 2px 0 rgba(0, 0, 0, 0.25));
+}
+
+#header-menu {
+    background-color: @header_menu_background_color;
+    bottom: -@header_menu_height;
+    height: @header_menu_height;
+    text-transform: uppercase;
+    position: absolute;
+    font-weight: 300;
+    font-size: 14px;
+    opacity: .9;
+    z-index: 1;
+    right: 0;
+    left: 0;
+}
+
+#header-menu.fixed {
+    position: fixed;
+    bottom: auto;
+    z-index: 10;
+    top: 0;
+}
+
+#header-menu .menu {
+    text-align: center;
+    overflow: hidden;
+    height: 100%;
+}
+
+#header-menu .menu-item {
+    line-height: @header_menu_height;
+    display: inline-block;
+    cursor: pointer;
+    height: 100%;
+}
+
+#header-menu .menu-item,
+#header-menu .menu-item.active:hover {
+    color: #d5d5d5
+}
+
+#header-menu .menu-item:hover {
+    color: #fff;
+}
+
+#header-menu .menu-item a {
+    text-decoration: none;
+    font-weight: inherit;
+    padding: 0 30px;
+    display: block;
+    outline: none;
+    height: 100%;
+
+    .transition (background-color 0.5s ease);
+}
+
+#header-menu .menu-link.active {
+    background-color: #252525;
+    cursor: default;
+}
+
+/*--------------------------------------------------------------------------------*/
+/*----------------------------- Section Heading CSS ------------------------------*/
+/*--------------------------------------------------------------------------------*/
+
+.section-heading {
+    text-align: center;
+    overflow: hidden;
+}
+
+.section-heading h2 {
+    text-transform: uppercase;
+    line-height: 36px;
+    font-weight: 300;
+    font-size: 36px;
+}
+
+/*--------------------------------------------------------------------------------*/
+/*---------------------------- About Me Section CSS ------------------------------*/
+/*--------------------------------------------------------------------------------*/
+
+#about-me {
+    background-color: #8A7E65;
+    color: #fff;
+}
+
+#about-me .content {
+    overflow: hidden;
+}
+
+#about-me .info {
+    float: left;
+
+    width: 635px;
+}
+
+#about-me .profile-pic {
+    height: 300px;
+    width: 300px;
+    float: right;
+}
+
+#about-me .profile-pic img {
+    display: block;
+    height: 100%;
+    width: 100%;
+
+    .border-radius(150px);
+}
+
+/*--------------------------------------------------------------------------------*/
+/*------------------------- Technical Skills Section CSS --- Root Color: #DBD6BE -*/
+/*--------------------------------------------------------------------------------*/
+
+#technical-skills {
+    background-color: #9b6866;
+    color: #fff;
+}  
+
+/*--------------------------------------------------------------------------------*/
+/*---------------------------- Education Section CSS ------- Root Color: #738485 -*/
+/*--------------------------------------------------------------------------------*/
+
+#education {
+    background-color: #738485;
+    color: #fff;
+}
+
+/*--------------------------------------------------------------------------------*/
+/*------------------ Professional Experience Section CSS --- Root Color: #3e565b -*/
+/*--------------------------------------------------------------------------------*/
+
+#professional-experience {
+    background-color: #556c71;
+    color: #fff;
+}
+
+#professional-experience .content {
+    position: relative;
+}
+
+#professional-experience .content:after {
+    background-color: #27393d;
+    position: absolute;
+    height: 100%;
+    left: 190px;
+    content: "";
+    width: 1px;
+    top: 0;
+}
+
+#professional-experience .item {
+    margin-bottom: 50px;
+    overflow: hidden;
+}
+
+#professional-experience .item:last-child {
+    margin-bottom: 0;
+}
+
+#professional-experience .item .work-year {
+    background-color: #3e565b;
+    text-align: center;
+    line-height: 1.5em;
+    font-size: 17px;
+    height: 150px;
+    width: 150px;
+    float: left;
+
+    .border-radius(75px);
+}
+
+#professional-experience .item .work-year .inner {
+    margin-top: 50px;
+}
+
+#professional-experience .item .work-info {
+    border-bottom: 4px solid #27393d;
+    background-color: #3e565b;
+    position: relative;
+    padding: 30px 45px 5px;
+    margin-left: 225px;
+}
+
+#professional-experience .item .work-info:before {
+    border-bottom: 10px solid transparent;
+    border-top: 10px solid transparent;
+    border-right: 10px solid #3e565b;
+    height: 0;
+    width: 0;
+
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: -10px;
+
+}
+
+/*--------------------------------------------------------------------------------*/
+/*---------------------------- Portfolio Section CSS ------- Root Color: #858092 -*/
+/*--------------------------------------------------------------------------------*/
+
+#portfolio {
+    background-color: #69627b;
+    color: #fff;
+}
+
+#portfolio .item {
+    background-color: #858092;
+    height: 252px;
+    width: 252px;
+    margin: 5px;
+    float: left;
+}
+
+/*--------------------------------------------------------------------------------*/
+/*---------------------------- Contact Map Section CSS ---------------------------*/
+/*--------------------------------------------------------------------------------*/
+
+#contact-map {
+    background-color: #474D5D;
+    color: #fff;
+}
+
+#contact-map .container {
+    padding-bottom: 60px;
+}
+
+#contact-map .section-heading {
+    padding-bottom: 0;
+}
+
+#contact-map .map {
+    background: url('/Content/Images/map.png');
+    position: relative;
+    overflow: hidden;
+    display: block;
+    height: 400px;
+    width: 100%;
+
+    .diagonal-gradient(#eee, #ccc);
+}
+
+#contact-map .map:before,
+#contact-map .map:after {
+    background-color: #fff;
+    position: absolute;
+    height: 1px;
+    content: "";
+    z-index: 1;
+    right: 0;
+    left: 0;
+}
+
+#contact-map .map:before {
+    border-bottom: 2px solid #474D5D;
+    top: 0;
+}
+
+#contact-map .map:after {
+    border-top: 2px solid #474D5D;
+    bottom: 0;
+}
+
+#contact-map .map img {
+    display: block;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+
+#contact-map .map .overlay {
+    background-color: rgba(71, 77, 93, .25);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+}
+
+/*--------------------------------------------------------------------------------*/
+/*------------------------ Contact Details Section CSS ---------------------------*/
+/*--------------------------------------------------------------------------------*/
+
+#contact-details {
+    background-color: #474D5D;
+    color: #fff;
+}
+
+#contact-details h4 {
+    text-transform: uppercase;
+    padding-bottom: 25px;
+}
+
+#contact-details .content {
+    padding-top: 75px;
+}
+
+#contact-details .contact-details {
+    width: 300px; 
+    float: left;
+}
+
+#contact-details .contact-details p,
+#contact-details .contact-details a {
+    text-decoration: none;
+    margin-bottom: 15px;
+    font-weight: normal;
+    font-size: 13px;
+    color: #93959c;
+    margin-top: 0;
+}
+
+#contact-details .contact-details .fa {
+    display: inline-block;
+    margin-right: 5px;
+    height: 15px;
+    width: 15px;
+}
+
+#contact-details .contact-form {
+    margin-left: 325px;
+    overflow: hidden;
+    width: 725px;
+}
+
+#contact-details .contact-form .form-input {
+    background-color: #585F73;
+    display: inline-block;
+    padding: 15px 30px;
+    font-style: italic;
+    color: #93959C;
+    border: none;
+
+    .box-sizing(border-box);
+}
+
+#contact-details .contact-form .form-email,
+#contact-details .contact-form .form-name {
+    width: 350px;
+}
+
+#contact-details .contact-form .form-name {
+    margin-right: 25px;
+}
+
+
+#contact-details .contact-form .form-comments {
+    min-height: 100px;
+    margin-top: 25px;
+    width: 100%;
+}
+
+#contact-details .contact-form .form-submit {
+    background-color: #2B2F3B;
+    margin-top: 25px;
+    float: right;
+}
+
+/*--------------------------------------------------------------------------------*/
+/*-------------------------------- Footer CSS ------------------------------------*/
+/*--------------------------------------------------------------------------------*/
+
+#footer {
+    background-color: #828794;
+    color: #fff;
+}
+
+#footer .social {
+    text-align: center;
+    display: block;
+    margin: 32px 0;
+}
+
+#footer .social .social-element {
+    background-color: #fff;
+    display: inline-block;
+    line-height: 48px;
+    margin: 0 12px;
+    height: 48px;
+    width: 48px;
+    
+    .border-radius(24px);
+}
+
+
+#footer .social .social-element .fa,
+#footer .social .social-element a {
+    text-decoration: none;
+    line-height: 48px;
+    font-size: 24px;
+    color: #828794;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+/*--------------------------------------------------------------------------------*/
+/*-------------------------------- Unsorted CSS ----------------------------------*/
+/*--------------------------------------------------------------------------------*/
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
