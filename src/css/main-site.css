@@ -66,10 +66,6 @@ h4 {
     overflow: hidden;
 }
 
-#main {
-    margin-top: 62px;
-}
-
 /*--------------------------------------------------------------------------------*/
 /*----------------------------- Button and Input CSS -----------------------------*/
 /*--------------------------------------------------------------------------------*/
@@ -95,24 +91,23 @@ h4 {
 /*--------------------------------------------------------------------------------*/
 
 #header-vcard {
-    border: 1px solid rgba(255, 255, 255, .5);
-    box-shadow: 0 0 2px 0 rgba(0, 0, 0, .5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .25);
     background-color: rgba(0, 0, 0, .5);
     background-clip: padding-box;
-    border-radius: 4px;
+    border-radius: 100px;
     position: absolute;
     text-align: center;
-    width: 1000px;
+    width: 900px;
     height: 200px;
     margin: auto;
+    bottom: 62px;
     color: #fff;
-    bottom: 0;
     right: 0;
     left: 0;
     top: 0;
 }
 
-#header-vcard h1, h2 {
+#header-vcard h1, #header-vcard h2 {
     text-shadow: 0 0 10px #000;
 }
 
@@ -121,14 +116,13 @@ h4 {
     margin: 30px 0 25px;
     line-height: 80px;
     font-weight: 300;
-    font-size: 80px;
+    font-size: 64px;
 }
 
 #header-vcard h2 {
     line-height: 36px;
     font-weight: 300;
-    font-size: 30px;
-    margin: 0;
+    font-size: 24px;
 }
 
 /*--------------------------------------------------------------------------------*/
@@ -143,7 +137,7 @@ h4 {
 }
 
 #header-banner .banner {
-    background: url("../img/covers/sf-5.jpg") center no-repeat;
+    background: url("../img/covers/sf-4.jpg") center no-repeat;
     background-size: cover;
     height: 100%;
     width: 100%;
@@ -178,32 +172,21 @@ h4 {
 #header {
     position: relative;
     max-height: 1440px;
+    overflow: hidden;
     height: 100%;
 }
 
-#header:after {
-    background-color: #333;
-    position: absolute;
-    bottom: -62px;
-    height: 62px;
-    content: "";
-    width: 100%;
-    z-index: 0;
-    left: 0;
-
-    .box-shadow(0 -2px 2px 0 rgba(0, 0, 0, 0.25));
-}
-
 #header-menu {
-    background-color: #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .25);
+    background-color: rgba(0, 0, 0, .9);
+    background-clip: padding-box;
     text-transform: uppercase;
     position: absolute;
     font-weight: 300;
     font-size: 14px;
-    bottom: -62px;
     height: 62px;
-    opacity: .9;
     z-index: 1;
+    bottom: 0;
     right: 0;
     left: 0;
 }
@@ -228,29 +211,25 @@ h4 {
     height: 100%;
 }
 
-#header-menu .menu-item,
-#header-menu .menu-item.active:hover {
-    color: #d5d5d5
-}
-
-#header-menu .menu-item:hover {
-    color: #fff;
-}
-
-#header-menu .menu-item a {
+#header-menu .menu-link {
+    text-shadow: 0 0 10px #000;
+    transition: all 0.25s ease;
     text-decoration: none;
     font-weight: inherit;
     padding: 0 30px;
     display: block;
     outline: none;
     height: 100%;
+}
 
-    .transition (background-color 0.5s ease);
+#header-menu .menu-link:hover {
+    color: rgba(255, 255, 255, .75);
 }
 
 #header-menu .menu-link.active {
-    background-color: #252525;
+    background-color: rgba(255, 255, 2555, .10);
     cursor: default;
+    color: #fff;
 }
 
 /*--------------------------------------------------------------------------------*/
